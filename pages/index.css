@@ -1,0 +1,53 @@
+* {
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+html,
+body {
+  position: relative;
+  max-width: 100%;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+section {
+  box-sizing: border-box;
+  position: relative;
+  width: 100vw;
+  background-color: map-get($colors, "white");
+  margin-top: 80px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+label,
+input,
+textarea,
+select,
+option,
+li,
+span {
+  font-family: Lato;
+  margin: 0;
+}

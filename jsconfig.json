@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es6",
+    "module": "commonjs",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@helpers/*": ["helpers/*"],
+      "@constants/*": ["constants/*"],
+      "@scenes/*": ["scenes/*"],
+      "@icons/*": ["icons/*"]
+    }
+  }
+}
