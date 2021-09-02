@@ -7,7 +7,7 @@ export default function TextField({
   onChange = () => {},
   width,
 }) {
-  if (type === "text") {
+  if (type === "date") {
     return <Box></Box>;
   } else {
     return (
