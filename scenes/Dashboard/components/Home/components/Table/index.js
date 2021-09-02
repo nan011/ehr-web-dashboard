@@ -30,9 +30,7 @@ export default function Table({
 
   const selectRow = useCallback(
     (index) => {
-      console.log(index, !innerRows[index].selected);
       innerRows[index].selected = !innerRows[index].selected;
-      console.log(innerRows[index], innerRows[index].selected);
       setInnerRows([...innerRows]);
     },
     [innerRows]
@@ -59,8 +57,6 @@ export default function Table({
         .map((rowData) => rowData.key)
     );
   }, [...innerRows.map((row) => row.selected)]);
-
-  console.log(innerRows);
 
   return (
     <AbstractTable

@@ -14,4 +14,5 @@ export const ModalXIcon = createIcon("/icons/modal-x.svg");
 export const CheckIcon = createIcon("/icons/check.svg");
 export const LeftArrowIcon = createIcon("/icons/left-arrow.svg");
 export const RightArrowIcon = createIcon("/icons/right-arrow.svg");
+export const DownArrowIcon = createIcon("/icons/down-arrow.svg");
 export const TripleBarIcon = createIcon("/icons/triple-bar.svg");

@@ -7,7 +7,7 @@ import { COLORS, SIZES, FONT_WEIGHTS } from "@constants/index";
 import { useForm } from "@hooks/index";
 
 import Table from "./components/Table";
-import TextField from "./components/TextField";
+import Field from "./components/Field";
 import { QUERY_TYPES, PATIENT_QUERIES } from "./constants";
 
 export default function Home() {
@@ -36,16 +36,23 @@ export default function Home() {
         </Text>
         <Gap gap={24} />
         <Box direction="row" crossAxis="center" width="60%">
-          <TextField
+          <Field
             value={queries.fields[QUERY_TYPES.NIK].value}
             placeholder={QUERY_TYPES.NIK}
             onChange={(value) => setQuery(QUERY_TYPES.NIK, value)}
           />
           <Gap gap={16} />
-          <TextField
+          <Field
             value={queries.fields[QUERY_TYPES.FULL_NAME].value}
             placeholder={QUERY_TYPES.FULL_NAME}
             onChange={(value) => setQuery(QUERY_TYPES.FULL_NAME, value)}
+          />
+          <Gap gap={16} />
+          <Field
+            type="date"
+            value={queries.fields[QUERY_TYPES.CHECK_UP_DATETIME].value}
+            placeholder={QUERY_TYPES.CHECK_UP_DATETIME}
+            onChange={(value) => setQuery(QUERY_TYPES.CHECK_UP_DATETIME, value)}
           />
         </Box>
       </Box>
