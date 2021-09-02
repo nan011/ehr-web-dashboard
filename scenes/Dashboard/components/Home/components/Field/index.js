@@ -33,7 +33,8 @@ export default function Field({
       <Click radius="0.25rem" background={COLORS.WHITE} width="100%">
         <Styled.CustomDatetime>
           <Datetime
-            timeformat={false}
+            dateFormat="DD MMM YYYY"
+            timeFormat={false}
             onOpen={() => setDateIsOpened(true)}
             onClose={() => setDateIsOpened(false)}
             closeOnClickOutside={() => setDateIsOpened(false)}
