@@ -4,12 +4,27 @@
     "target": "es6",
     "module": "commonjs",
     "paths": {
-      "@components/*": ["components/*"],
-      "@hooks/*": ["hooks/*"],
-      "@helpers/*": ["helpers/*"],
-      "@constants/*": ["constants/*"],
-      "@scenes/*": ["scenes/*"],
-      "@icons/*": ["icons/*"]
+      "@components/*": [
+        "components/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+      "@helpers/*": [
+        "helpers/*"
+      ],
+      "@constants/*": [
+        "constants/*"
+      ],
+      "@scenes/*": [
+        "scenes/*"
+      ],
+      "@icons/*": [
+        "icons/*"
+      ],
+      "@contexts/*": [
+        "contexts/*"
+      ],
     }
   }
 }

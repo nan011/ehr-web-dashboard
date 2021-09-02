@@ -5,3 +5,8 @@ export { default as Gap } from "./Gap";
 export { default as Icon } from "./Icon";
 export { default as Button } from "./Button";
 export { default as Cloud } from "./Cloud";
+export { default as Sky } from "./Sky";
+export { default as FloatFrame } from "./FloatFrame";
+export { default as Modal } from "./Modal";
+export { default as AbstractTable } from "./AbstractTable";
+export { default as CheckBox } from "./CheckBox";

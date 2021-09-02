@@ -1,11 +1,13 @@
-import { useState } from "react";
-
+import { useState, useContext, useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
-import { Box, Text, Gap, Button, Click, Cloud } from "@components/index";
+import { Box, Text, Gap, Button, Click, Cloud, Modal } from "@components/index";
+import { isNone } from "@helpers/utilities";
 import { SIZES, FONT_WEIGHTS, COLORS } from "@constants/index";
 import { EHRIcon, EHRWhiteIcon, UserIcon, PadlockIcon } from "@icons/index";
 import { useForm } from "@hooks/index";
+import { AppContext } from "@contexts/index";
 
 import Field from "./components/Field";
 import {
@@ -17,8 +19,21 @@ import {
   LOGIN_LABELS,
 } from "./constants";
 import TopbarTitle from "./components/TopbarTitle";
+import Registration from "./components/Registration";
+import ContactUs from "./components/ContactUs";
 
 export default function Home() {
+  const router = useRouter();
+  const appContext = useContext(AppContext);
+  const modal = appContext?.modal;
+
+  // If no modal is shown, go back to login page
+  useEffect(() => {
+    if (isNone(modal) || modal?.isEmpty) {
+      setSelectedTobarTitle(TOPBAR_TITLES.LOGIN);
+    }
+  }, [modal?.isEmpty]);
+
   const [form, setField] = useForm(LOGIN_FORM);
   const [selectedTopbarTitle, setSelectedTobarTitle] = useState(
     TOPBAR_TITLES.LOGIN
@@ -101,19 +116,48 @@ export default function Home() {
         <Box width="100%" direction="row" mainAxis="end">
           <TopbarTitle
             name={TOPBAR_TITLES.LOGIN}
-            onClick={() => setSelectedTobarTitle(TOPBAR_TITLES.LOGIN)}
+            onClick={() => {
+              modal?.pop();
+              setSelectedTobarTitle(TOPBAR_TITLES.LOGIN);
+            }}
             shouldHighlight={selectedTopbarTitle === TOPBAR_TITLES.LOGIN}
           />
           <Gap gap={52} />
           <TopbarTitle
             name={TOPBAR_TITLES.REGISTER}
-            onClick={() => setSelectedTobarTitle(TOPBAR_TITLES.REGISTER)}
+            onClick={() => {
+              modal?.pop();
+              modal?.add(
+                <Modal
+                  onClose={() => {
+                    modal?.pop();
+                    setSelectedTobarTitle(TOPBAR_TITLES.LOGIN);
+                  }}
+                >
+                  <Registration />
+                </Modal>
+              );
+              setSelectedTobarTitle(TOPBAR_TITLES.REGISTER);
+            }}
             shouldHighlight={selectedTopbarTitle === TOPBAR_TITLES.REGISTER}
           />
           <Gap gap={52} />
           <TopbarTitle
             name={TOPBAR_TITLES.CALL_US}
-            onClick={() => setSelectedTobarTitle(TOPBAR_TITLES.CALL_US)}
+            onClick={() => {
+              modal?.pop();
+              modal?.add(
+                <Modal
+                  onClose={() => {
+                    modal?.pop();
+                    setSelectedTobarTitle(TOPBAR_TITLES.LOGIN);
+                  }}
+                >
+                  <ContactUs />
+                </Modal>
+              );
+              setSelectedTobarTitle(TOPBAR_TITLES.CALL_US);
+            }}
             shouldHighlight={selectedTopbarTitle === TOPBAR_TITLES.CALL_US}
           />
         </Box>
@@ -151,6 +195,7 @@ export default function Home() {
             type={Button.Type.Red}
             width="100%"
             canClickByEnter={true}
+            onClick={() => router.push("/dashboard")}
           />
           <Gap gap={36} />
           <Box direction="row" mainAxis="center" crossAxis="center">
@@ -166,7 +211,7 @@ export default function Home() {
               <Text
                 size={SIZES.SMALL}
                 weight={FONT_WEIGHTS.BOLD}
-                color={COLORS.WARM_BLACK}
+                color={COLORS.BLUE}
                 decoration="underline"
               >
                 Reset

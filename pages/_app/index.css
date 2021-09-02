@@ -15,16 +15,8 @@ html,
 body {
   position: relative;
   max-width: 100%;
-  overflow-y: visible;
+  overflow-y: hidden;
   overflow-x: hidden;
-}
-
-section {
-  box-sizing: border-box;
-  position: relative;
-  width: 100vw;
-  background-color: map-get($colors, "white");
-  margin-top: 80px;
 }
 
 table {

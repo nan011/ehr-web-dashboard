@@ -22,7 +22,7 @@ const Box = styled.div`
     props.isVisible === undefined || props.isVisible ? props.opacity : 0};
   transition-timing-function: ${(props) =>
     props.timingFunction || "cubic-bezier(0.11, 1.11, 0.15, 0.99)"};
-  transition-duration: ${(props) => props.duration || "1.5s"};
+  transition-duration: ${(props) => props.duration || "0.3s"};
   animation-timing-function: ${(props) =>
     props.timingFunction || "cubic-bezier(0.11, 1.11, 0.15, 0.99)"};
   animation-duration: ${(props) => props.duration || "0.3s"};
