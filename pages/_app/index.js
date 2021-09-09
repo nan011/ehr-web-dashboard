@@ -42,8 +42,9 @@ export default function SpecializedApp({ Component, pageProps }) {
         index={1}
         clickable={modalDataList.some((modalData) => modalData.isVisible)}
       >
-        {modalDataList.map((modalData) => (
+        {modalDataList.map((modalData, index) => (
           <Modal
+            key={index}
             isVisible={modalData.isVisible}
             onClose={() => {
               modalDispatch({

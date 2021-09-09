@@ -118,6 +118,7 @@ export default function Table({
               if (index > 0) {
                 split = (
                   <Box
+                    key={2 * index}
                     height="100%"
                     width="1px"
                     background={COLORS.BLUE}
@@ -129,7 +130,7 @@ export default function Table({
               return (
                 <>
                   {split}
-                  <Click onClick={action.onClick}>
+                  <Click key={2 * index + 1} onClick={action.onClick}>
                     <Text
                       size={SIZES.REGULAR}
                       weight={FONT_WEIGHTS.REGULAR}
