@@ -9,4 +9,4 @@ export { default as Sky } from "./Sky";
 export { default as FloatFrame } from "./FloatFrame";
 export { default as Modal } from "./Modal";
 export { default as AbstractTable } from "./AbstractTable";
-export { default as CheckBox } from "../_next/CheckBox";
+export { default as CheckBox } from "./CheckBox";
