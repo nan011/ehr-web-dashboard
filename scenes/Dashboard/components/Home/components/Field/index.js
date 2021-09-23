@@ -33,18 +33,12 @@ export default function Field({
               placeholder,
               disabled: false,
             }}
-            renderInput={(props) => (
-              <NumberFormat
-                {...props}
-                format={DATE_FORMAT.replace(/[^\/]/g, "#")}
-                mask={DATE_FORMAT.replace(/\//g, "").split("")}
-              />
-            )}
             dateFormat="DD/MM/YYYY"
             timeFormat={false}
             onOpen={() => setDateIsOpened(true)}
             onClose={() => setDateIsOpened(false)}
             onChange={(moment) => onChange(moment.toDate())}
+            closeOnSelect={true}
             closeOnClickOutside={() => setDateIsOpened(false)}
           />
         </Styled.CustomDatetime>
