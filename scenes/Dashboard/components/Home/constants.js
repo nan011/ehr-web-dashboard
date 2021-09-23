@@ -18,3 +18,5 @@ export const PATIENT_QUERIES = [
     type: "date",
   },
 ];
+
+export const MAX_ROWS_COUNT = 10;

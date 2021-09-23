@@ -1,7 +1,9 @@
-import { useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 
 import { Sky } from "@components/index";
 import { AppContext } from "@contexts/index";
+import { createMainAPI } from "@api/index";
+import { isNone } from "@helpers/utilities";
 
 import Modal from "./components/Modal";
 import { modalUpdateHandler } from "./functions";
@@ -10,6 +12,7 @@ import "./index.css";
 
 export default function SpecializedApp({ Component, pageProps }) {
   const [modalDataList, modalDispatch] = useReducer(modalUpdateHandler, []);
+  const [user, setUser] = useState({});
 
   const modal = {
     add: (component) => {
@@ -30,7 +33,24 @@ export default function SpecializedApp({ Component, pageProps }) {
 
   const appContextValue = {
     modal,
+    apis: {
+      main: createMainAPI(user?.token),
+    },
+    isAuthenticated: !isNone(user?.token),
+    user,
+    setUser: (user) => {
+      window.localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
+    },
   };
+
+  useEffect(() => {
+    const user = JSON.parse(window.localStorage.getItem("user"));
+    console.log(user);
+    if (!isNone(user)) {
+      setUser(user);
+    }
+  }, []);
 
   return (
     <AppContext.Provider value={appContextValue}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { Box, Text, Gap, Click } from "@components/index";
 import { LeftArrowIcon, RightArrowIcon } from "@icons/index";
@@ -6,14 +6,21 @@ import { isNone } from "@helpers/utilities";
 import { COLORS, SIZES, FONT_WEIGHTS } from "@constants/index";
 import { useForm } from "@hooks/index";
 
+import { AppContext } from "@contexts/index";
+
 import Table from "./components/Table";
 import Field from "./components/Field";
-import { QUERY_TYPES, PATIENT_QUERIES } from "./constants";
+import { QUERY_TYPES, PATIENT_QUERIES, MAX_ROWS_COUNT } from "./constants";
+import { parsePatients } from "./functions";
 
 export default function Home() {
   const [pageNumber, setPageNumber] = useState(1);
   const [maxPageNumber, setMaxPageNumber] = useState(null);
   const [queries, setQuery] = useForm(PATIENT_QUERIES);
+  const [rows, setRows] = useState([]);
+  const appContext = useContext(AppContext);
+  const mainAPI = appContext?.apis?.main;
+  const isAuthenticated = appContext?.isAuthenticated;
 
   const changePageNumber = (newPageNumber) => {
     if (newPageNumber > 0 && maxPageNumber && newPageNumber <= newPageNumber) {
@@ -23,6 +30,38 @@ export default function Home() {
       setPageNumber(1);
     }
   };
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      return;
+    }
+
+    const loadPatients = async () => {
+      const offset = (pageNumber - 1) * MAX_ROWS_COUNT;
+      const limit = offset + MAX_ROWS_COUNT;
+      const response = await mainAPI?.getPatients({
+        offset,
+        limit,
+      });
+
+      if (response.status !== 200) {
+        // TODO: Handle error
+        return;
+      }
+
+      const payload = await response.json();
+
+      if (isNone(payload)) {
+        // TODO: Handle error
+        return;
+      }
+
+      const maxPageNumber = Math.ceil(payload.count / MAX_ROWS_COUNT);
+      setMaxPageNumber(maxPageNumber);
+      setRows(parsePatients(payload.results));
+    };
+    loadPatients();
+  }, [pageNumber, isAuthenticated]);
 
   return (
     <Box width="100%" height="100%" direction="column">
@@ -75,68 +114,7 @@ export default function Home() {
       >
         <Table
           header={["NIK", "Nama Lengkap", "Pemeriksaan Terakhir", "Aksi"]}
-          rows={[
-            [
-              "3260101930001",
-              "3260101930001",
-              "Adrian Pangestu",
-              "30 November 2020",
-            ],
-            [
-              "3260101930002",
-              "3260101930002",
-              "Adrian Pangestu",
-              "30 November 2020",
-            ],
-            [
-              "3260101930003",
-              "3260101930003",
-              "Adrian Pangestu",
-              "30 November 2020",
-            ],
-            [
-              "3260101930004",
-              "3260101930004",
-              "Nandhika Prayoga",
-              "20 November 1999",
-            ],
-            [
-              "3260101930005",
-              "3260101930005",
-              "Nandhika Prayoga",
-              "20 November 1999",
-            ],
-            [
-              "3260101930006",
-              "3260101930006",
-              "Nandhika Prayoga",
-              "20 November 1999",
-            ],
-            [
-              "3260101930007",
-              "3260101930007",
-              "Nandhika Prayoga",
-              "20 November 1999",
-            ],
-            [
-              "3260101930008",
-              "3260101930008",
-              "Nandhika Prayoga",
-              "20 November 1999",
-            ],
-            [
-              "3260101930009",
-              "3260101930009",
-              "Nandhika Prayoga",
-              "20 November 1999",
-            ],
-            [
-              "3260101930010",
-              "3260101930010",
-              "Nandhika Prayoga",
-              "20 November 1999",
-            ],
-          ]}
+          rows={rows}
         />
         <Gap gap={42} />
         <Box

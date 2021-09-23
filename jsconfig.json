@@ -25,6 +25,9 @@
       "@contexts/*": [
         "contexts/*"
       ],
+      "@api/*": [
+        "api/*"
+      ],
     }
   }
 }

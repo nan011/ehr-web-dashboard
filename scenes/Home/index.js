@@ -25,7 +25,14 @@ import ContactUs from "./components/ContactUs";
 export default function Home() {
   const router = useRouter();
   const appContext = useContext(AppContext);
+  const mainAPI = appContext?.apis?.main;
+  const user = appContext?.user;
+  const setUser = appContext?.setUser;
   const modal = appContext?.modal;
+
+  if (!isNone(user?.token)) {
+    router.push("/dashboard");
+  }
 
   // If no modal is shown, go back to login page
   useEffect(() => {
@@ -195,7 +202,29 @@ export default function Home() {
             type={Button.Type.Red}
             width="100%"
             canClickByEnter={true}
-            onClick={() => router.push("/dashboard")}
+            onClick={async () => {
+              if (!form.isValid) {
+                // TODO: Show error
+                return;
+              }
+
+              const response = await mainAPI?.login({
+                email: form.fields[LOGIN_LABELS.EMAIL].value,
+                password: form.fields[LOGIN_LABELS.PASSWORD].value,
+              });
+
+              if (response.status != 200) {
+                // TODO: Show error
+                return;
+              }
+
+              const payload = await response.json();
+
+              setUser({
+                token: payload.token,
+              });
+              router.push("/dashboard");
+            }}
           />
           <Gap gap={36} />
           <Box direction="row" mainAxis="center" crossAxis="center">

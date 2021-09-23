@@ -3,6 +3,8 @@ import { useState, useCallback, useMemo, useEffect } from "react";
 import { Box, Click, Text, CheckBox, AbstractTable } from "@components/index";
 import { COLORS, FONT_WEIGHTS, SIZES } from "@constants/index";
 
+import { parseRows } from "./functions";
+
 const Cell = AbstractTable.Cell;
 
 export default function Table({
@@ -11,17 +13,11 @@ export default function Table({
   onSelect = (_) => {},
   actions = [],
 }) {
-  const [innerRows, setInnerRows] = useState(
-    rows.map((row) => {
-      const key = row[0];
+  const [innerRows, setInnerRows] = useState(parseRows(rows));
 
-      return {
-        key,
-        selected: false,
-        row: row.slice(1),
-      };
-    })
-  );
+  useEffect(() => {
+    setInnerRows(parseRows(rows));
+  }, [rows]);
 
   const isAllSelected = useMemo(
     () => innerRows.every((row) => row.selected),
