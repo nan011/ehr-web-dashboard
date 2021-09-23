@@ -37,11 +37,23 @@ export default function Home() {
     }
 
     const loadPatients = async () => {
+      let extraParameters = {};
+
+      if (queries.isValid) {
+        extraParameters = Object.values(queries.fields).reduce(
+          (fields, field, index) => ({
+            ...fields,
+            ...PATIENT_QUERIES[index].getParameter(field.value),
+          }),
+          {}
+        );
+      }
       const offset = (pageNumber - 1) * MAX_ROWS_COUNT;
       const limit = offset + MAX_ROWS_COUNT;
       const response = await mainAPI?.getPatients({
         offset,
         limit,
+        ...extraParameters,
       });
 
       if (response.status !== 200) {
