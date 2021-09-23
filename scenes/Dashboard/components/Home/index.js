@@ -23,9 +23,11 @@ export default function Home() {
   const isAuthenticated = appContext?.isAuthenticated;
 
   const changePageNumber = (newPageNumber) => {
-    if (newPageNumber > 0 && maxPageNumber && newPageNumber <= newPageNumber) {
+    if (newPageNumber > 0 && maxPageNumber && newPageNumber <= maxPageNumber) {
       setPageNumber(newPageNumber);
-    } else if (isNone(maxPageNumber)) {
+    } else if (!isNone(maxPageNumber)) {
+      setPageNumber(maxPageNumber);
+    } else {
       // Force to go page 1 only if no upper bound for the page number
       setPageNumber(1);
     }
