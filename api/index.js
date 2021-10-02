@@ -4,7 +4,7 @@ const API_DOMAIN = process.env.NEXT_PUBLIC_API_DOMAIN;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const END_POINTS = {
-  LOGIN: "/auth/token/",
+  TOKEN: "/auth/token/",
   PATIENTS: "/patients/",
 };
 
@@ -57,16 +57,20 @@ export function createMainAPI(token) {
       role: 2,
     };
 
-    return hit(END_POINTS.LOGIN, METHODS.POST, body);
+    return hit(END_POINTS.TOKEN, METHODS.POST, body);
+  }
+
+  async function logout() {
+    return hit(END_POINTS.TOKEN, METHODS.DELETE);
   }
 
   async function getPatients(parameters) {
-    console.log(END_POINTS.PATIENTS + createParameter(parameters));
     return hit(END_POINTS.PATIENTS + createParameter(parameters), METHODS.GET);
   }
 
   return {
     login,
+    logout,
     getPatients,
   };
 }

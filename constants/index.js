@@ -21,8 +21,10 @@ export const COLORS = {
   DARK_BLUE: "#043169",
   BLUE: "#3878B7",
   GRAY: "#A8B2C2",
+  DARK_RED: "#BA1717",
   RED: "#D54C4C",
   LIGHT_BLUE: "#CAD3E2",
+  WARM_BLUE: "#26B9D7",
   SKY: "#E8EBF5",
   BLUE_CLOSE_TO_WHITE: "#F4F6FD",
 };

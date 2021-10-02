@@ -12,7 +12,7 @@ import "./index.css";
 
 export default function SpecializedApp({ Component, pageProps }) {
   const [modalDataList, modalDispatch] = useReducer(modalUpdateHandler, []);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   const modal = {
     add: (component) => {
@@ -46,9 +46,10 @@ export default function SpecializedApp({ Component, pageProps }) {
 
   useEffect(() => {
     const user = JSON.parse(window.localStorage.getItem("user"));
-    console.log(user);
     if (!isNone(user)) {
       setUser(user);
+    } else {
+      setUser(null);
     }
   }, []);
 
