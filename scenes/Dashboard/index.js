@@ -13,6 +13,7 @@ import { Spinner } from "./styled";
 export default function Dashboard() {
   const appContext = useContext(AppContext);
   const mainAPI = appContext?.apis?.main;
+  const user = appContext?.user;
   const setUser = appContext?.setUser;
 
   const router = useRouter();
@@ -166,7 +167,16 @@ export default function Dashboard() {
           >
             {sectionTitle}
           </Text>
-          <Box>{/* Profile actions */}</Box>
+          <Box grow={1} />
+          <Box>
+            <Text
+              color={COLORS.WARM_BLACK}
+              size={SIZES.NORMAL}
+              weight={FONT_WEIGHTS.BOLD}
+            >
+              {user && user.name && ""}
+            </Text>
+          </Box>
         </Box>
         <Box background={COLORS.SKY} width="100%" grow={1}>
           <Section />
