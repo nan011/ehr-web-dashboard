@@ -5,7 +5,12 @@ import { useRouter } from "next/router";
 import { Box, Gap, Text, Cloud, Click } from "@components/index";
 import { SIZES, COLORS, FONT_WEIGHTS } from "@constants/index";
 import { AppContext } from "@contexts/index";
-import { FullEHRIcon, TripleBarIcon, OpenedDoorIcon } from "@icons/index";
+import {
+  FullEHRIcon,
+  TripleBarIcon,
+  OpenedDoorIcon,
+  EHRWhiteIcon,
+} from "@icons/index";
 
 import { TABS } from "./constants";
 import { Spinner } from "./styled";
@@ -40,17 +45,20 @@ export default function Dashboard() {
         <title>Dashboard</title>
       </Head>
       <Box background={COLORS.RED} direction="column">
-        <Box width="100%" mainAxis="center" padding="2.4rem 2rem">
+        <Click
+          width="100%"
+          mainAxis="center"
+          padding="2.4rem 2rem"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
           {isExpanded && (
             <>
               <FullEHRIcon height={40} width={128} />
               <Gap gap={48} />
             </>
           )}
-          <Click onClick={() => setIsExpanded(!isExpanded)}>
-            <TripleBarIcon side={30} />
-          </Click>
-        </Box>
+          <TripleBarIcon side={30} />
+        </Click>
         {isExpanded && (
           <>
             <Gap gap={80} />
@@ -152,6 +160,15 @@ export default function Dashboard() {
             </>
           )}
         </Click>
+        <Cloud
+          top="0"
+          left="0"
+          transform="translate(-40%, -40%)"
+          isVisible={true}
+          clickable={false}
+        >
+          <EHRWhiteIcon side={600} opacity={0.05} />
+        </Cloud>
       </Box>
       <Box grow={1} direction="column">
         <Box

@@ -3,7 +3,7 @@ import { Box } from "@components/index";
 
 export default function Icon({ src, opacity, height, width, side, ...props }) {
   return (
-    <Box opacity={opacity}>
+    <Box opacity={opacity} clickable={false}>
       <Image
         src={src}
         height={side || height}

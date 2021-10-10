@@ -31,7 +31,7 @@ export default function Home() {
   const modal = appContext?.modal;
 
   if (!isNone(user?.token)) {
-    router.push("/dashboard");
+    router.push("/dashboard/home");
   }
 
   // If no modal is shown, go back to login page
@@ -223,7 +223,7 @@ export default function Home() {
               setUser({
                 token: payload.token,
               });
-              router.push("/dashboard");
+              router.push("/dashboard/home");
             }}
           />
           <Gap gap={36} />
