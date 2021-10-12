@@ -1,4 +1,5 @@
 import { useState, useReducer, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import { Sky } from "@components/index";
 import { AppContext } from "@contexts/index";
@@ -13,6 +14,7 @@ import "./index.css";
 export default function SpecializedApp({ Component, pageProps }) {
   const [modalDataList, modalDispatch] = useReducer(modalUpdateHandler, []);
   const [user, setUser] = useState(null);
+  const router = useRouter();
 
   const modal = {
     add: (component) => {
@@ -52,6 +54,12 @@ export default function SpecializedApp({ Component, pageProps }) {
       setUser(null);
     }
   }, []);
+
+  useEffect(() => {
+    if (isNone(user)) {
+      router.push("/");
+    }
+  }, [user]);
 
   return (
     <AppContext.Provider value={appContextValue}>

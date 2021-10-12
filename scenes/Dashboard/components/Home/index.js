@@ -89,24 +89,32 @@ export default function Home() {
         </Text>
         <Gap gap={24} />
         <Box direction="row" crossAxis="center" width="60%">
-          <Field
-            value={queries.fields[QUERY_TYPES.NIK].value}
-            placeholder={QUERY_TYPES.NIK}
-            onChange={(value) => setQuery(QUERY_TYPES.NIK, value)}
-          />
+          <Box maxWidth="16rem">
+            <Field
+              value={queries.fields[QUERY_TYPES.NIK].value}
+              placeholder={QUERY_TYPES.NIK}
+              onChange={(value) => setQuery(QUERY_TYPES.NIK, value)}
+            />
+          </Box>
           <Gap gap={16} />
-          <Field
-            value={queries.fields[QUERY_TYPES.FULL_NAME].value}
-            placeholder={QUERY_TYPES.FULL_NAME}
-            onChange={(value) => setQuery(QUERY_TYPES.FULL_NAME, value)}
-          />
+          <Box maxWidth="14rem">
+            <Field
+              value={queries.fields[QUERY_TYPES.FULL_NAME].value}
+              placeholder={QUERY_TYPES.FULL_NAME}
+              onChange={(value) => setQuery(QUERY_TYPES.FULL_NAME, value)}
+            />
+          </Box>
           <Gap gap={16} />
-          <Field
-            type="date"
-            value={queries.fields[QUERY_TYPES.CHECK_UP_DATETIME].value}
-            placeholder={QUERY_TYPES.CHECK_UP_DATETIME}
-            onChange={(value) => setQuery(QUERY_TYPES.CHECK_UP_DATETIME, value)}
-          />
+          <Box minWidth="14rem">
+            <Field
+              type="date"
+              value={queries.fields[QUERY_TYPES.CHECK_UP_DATETIME].value}
+              placeholder={QUERY_TYPES.CHECK_UP_DATETIME}
+              onChange={(value) =>
+                setQuery(QUERY_TYPES.CHECK_UP_DATETIME, value)
+              }
+            />
+          </Box>
         </Box>
       </Box>
       <Box padding={`4rem ${48 / 16}rem 0`} direction="column" width="100%">
@@ -136,6 +144,7 @@ export default function Home() {
           direction="row"
           mainAxis="center"
           crossAxis="center"
+          margin="1rem 0"
           grow={1}
           shrink={0}
         >
@@ -153,7 +162,7 @@ export default function Home() {
           </Click>
           <Box padding="0 1.5rem">
             <Text color={COLORS.BLUE} size={SIZES.REGULAR}>
-              Page {pageNumber}
+              Halaman {pageNumber}
             </Text>
           </Box>
           <Click

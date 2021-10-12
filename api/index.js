@@ -54,7 +54,6 @@ export function createMainAPI(token) {
     const body = {
       email,
       password,
-      role: 2,
     };
 
     return hit(END_POINTS.TOKEN, METHODS.POST, body);
