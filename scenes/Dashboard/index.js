@@ -195,7 +195,7 @@ export default function Dashboard() {
               size={SIZES.NORMAL}
               weight={FONT_WEIGHTS.BOLD}
             >
-              {user && user.name && ""}
+              {user && user.name}
             </Text>
           </Box>
         </Box>

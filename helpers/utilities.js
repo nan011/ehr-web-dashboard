@@ -35,3 +35,9 @@ export function createParameter(parts) {
 export function isNone(object) {
   return object === undefined || object === null;
 }
+
+export function isObject(object) {
+  return (
+    typeof object === "object" && !Array.isArray(object) && object !== null
+  );
+}

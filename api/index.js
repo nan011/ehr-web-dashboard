@@ -5,6 +5,7 @@ const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const END_POINTS = {
   TOKEN: "/auth/token/",
+  ACCOUNT: "/auth/account/",
   PATIENTS: "/patients/",
 };
 
@@ -63,6 +64,10 @@ export function createMainAPI(token) {
     return hit(END_POINTS.TOKEN, METHODS.DELETE);
   }
 
+  async function getAccount() {
+    return hit(END_POINTS.ACCOUNT, METHODS.GET);
+  }
+
   async function getPatients(parameters) {
     return hit(END_POINTS.PATIENTS + createParameter(parameters), METHODS.GET);
   }
@@ -70,6 +75,7 @@ export function createMainAPI(token) {
   return {
     login,
     logout,
+    getAccount,
     getPatients,
   };
 }
