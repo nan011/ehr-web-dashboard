@@ -24,8 +24,12 @@ export default function Dashboard() {
   const router = useRouter();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const tabIndex = TABS.findIndex(
+    ({ endpoint }) => endpoint === router.pathname
+  );
   const [selectedTabIndex, setSelectedTabIndex] = useState(
-    TABS.findIndex(({ endpoint }) => endpoint === router.pathname)
+    tabIndex < 0 ? 0 : tabIndex
   );
 
   const tabOnClick = (index, extraFunc) => {
@@ -191,7 +195,7 @@ export default function Dashboard() {
               size={SIZES.NORMAL}
               weight={FONT_WEIGHTS.BOLD}
             >
-              {user && user.name && ""}
+              {user && user.name}
             </Text>
           </Box>
         </Box>

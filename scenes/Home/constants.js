@@ -1,7 +1,7 @@
 export const GREETING_WORD = "Selamat datang";
-export const AFTER_GREETING_WORD = "di Cardicare EHR";
+export const AFTER_GREETING_WORD = "di CardiCare EHR";
 export const WEBSITE_DESCRIPTION =
-  "Aplikasi berbasis web untuk mengelola dan melihat data pasien instansi Anda. Ditujukan sebagai pendamping aplikasi Cardicare.";
+  "Aplikasi berbasis web untuk mengelola dan melihat data pasien instansi Anda. Ditujukan sebagai pendamping aplikasi CardiCare.";
 
 export const TOPBAR_TITLES = {
   LOGIN: "Masuk",
