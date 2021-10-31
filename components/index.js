@@ -10,3 +10,4 @@ export { default as FloatFrame } from "./FloatFrame";
 export { default as Modal } from "./Modal";
 export { default as AbstractTable } from "./AbstractTable";
 export { default as CheckBox } from "./CheckBox";
+export { default as TextInput } from "./TextInput";
