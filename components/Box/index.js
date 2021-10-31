@@ -53,14 +53,16 @@ const Box = styled.div`
     ${(props) => !isNone(props.radius) && `border-radius: ${props.radius};`}
     
   display: ${(props) =>
-    isNone(props.shouldExist) || props.shouldExist ? "flex" : "none"};
+    isNone(props.isVisible) || props.isVisible ? "flex" : "none"};
   flex-grow: ${(props) => (!isNone(props.grow) ? props.grow : 0)};
   flex-shrink: ${(props) => (!isNone(props.shrink) ? props.shrink : 1)};
   ${(props) => !isNone(props.align) && `align-self: ${props.align};`}
   flex-direction: ${(props) =>
     `${props.direction || "row"}${props.shouldReverse ? "-reverse" : ""}`};
   ${(props) =>
-    !isNone(props.shouldExist) && props.shouldWrap && `flex-wrap: wrap;`}
+    (isNone(props.isVisible) || props.isVisible) &&
+    props.shouldWrap &&
+    `flex-wrap: wrap;`}
   ${(props) =>
     !isNone(props.mainAxis) &&
     `justify-content: ${FLEX_POSITION[props.mainAxis]};`}

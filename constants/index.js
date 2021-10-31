@@ -5,7 +5,7 @@ export const SIZES = {
   MEDIUM: "1.5rem", // 24px
   NORMAL: "1.25rem", // 20px
   REGULAR: "1rem", // 16px
-  SMALL: "0.875rem",
+  SMALL: "0.875rem", // 14px
 };
 
 export const FONT_WEIGHTS = {
